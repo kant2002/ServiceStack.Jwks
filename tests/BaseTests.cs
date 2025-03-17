@@ -1,8 +1,10 @@
 using System;
 using System.Net.Http;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 using ServiceStack.Auth;
 
@@ -13,7 +15,7 @@ namespace ServiceStack.Jwks.Tests {
 
         protected HttpClient httpClient;
 
-        protected TestServer server;
+        protected IHost server;
         protected IConfiguration configuration;
 
         [OneTimeSetUp]
@@ -25,11 +27,11 @@ namespace ServiceStack.Jwks.Tests {
             server = CreateTestServer();
         }
 
-        protected abstract TestServer CreateTestServer();
+        protected abstract IHost CreateTestServer();
 
         [SetUp]
         public void BeforeTests() {
-            httpClient = server.CreateClient();
+            httpClient = server.GetTestClient();
             client = new JsonHttpClient("https://server.example.com") {
                 HttpClient = httpClient
             };
@@ -43,7 +45,7 @@ namespace ServiceStack.Jwks.Tests {
         protected string CreateJwt(RSAParameters privateKey, string algorithm, string audience = null) {
             var header = JwtAuthProvider.CreateJwtHeader(algorithm);
             var payload = JwtAuthProvider.CreateJwtPayload(new AuthUserSession {
-                    UserAuthId = "1",
+                    UserAuthId = "someuser",
                         DisplayName = "Test",
                         Email = "test@example.com",
                         // JwtAuthProvider.CreateJwt would fail without ProfileUrl when

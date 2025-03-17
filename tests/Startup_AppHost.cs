@@ -1,10 +1,9 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NUnit.Framework;
+using Microsoft.Extensions.Hosting;
 
 namespace ServiceStack.Jwks.Tests {
     public class Startup<TAppHost> where TAppHost : AppHostBase, new() {
@@ -20,14 +19,14 @@ namespace ServiceStack.Jwks.Tests {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostEnvironment env) {
             AppHost = app.ApplicationServices.GetRequiredService<TAppHost>();
             app.UseServiceStack(AppHost);
         }
     }
 
     public static class WebHostUtils {
-        public static TestServer CreateTestServer<TAppHost>(IConfiguration config = null)where TAppHost : AppHostBase, new() {
+        public static IHost CreateTestServer<TAppHost>(IConfiguration config = null) where TAppHost : AppHostBase, new() {
             if (config == null) {
                 config = new ConfigurationBuilder()
                     .AddJsonFile("appsettings.json")
@@ -35,11 +34,15 @@ namespace ServiceStack.Jwks.Tests {
                     .Build();
             }
 
-            var hostBuilder = new WebHostBuilder()
-                .UseStartup<Startup<TAppHost>>()
-                .UseConfiguration(config);
+            var hostBuilder = new HostBuilder()
+                .ConfigureWebHost(webHost =>
+                {
+                    webHost.UseStartup<Startup<TAppHost>>()
+                        .UseConfiguration(config)
+                        .UseTestServer();
+                });
 
-            return new TestServer(hostBuilder);
+            return hostBuilder.Start();
         }
     }
 }

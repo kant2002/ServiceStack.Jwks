@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using NUnit.Framework;
+using Microsoft.AspNetCore.TestHost;
 
 namespace ServiceStack.Jwks.Tests {
 
@@ -40,7 +41,7 @@ namespace ServiceStack.Jwks.Tests {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
+        public void Configure(IApplicationBuilder app, IHostEnvironment env, ILoggerFactory loggerFactory) {
             app.UseAuthentication();
             app.Run(context => {
                 context.Response.StatusCode = context.User.Identity.IsAuthenticated ? 204 : 401;
@@ -51,12 +52,16 @@ namespace ServiceStack.Jwks.Tests {
 
     [TestFixture]
     public class OpenIdConnectAuthTests : BaseTests {
-        protected override TestServer CreateTestServer() {
-            var hostBuilder = new WebHostBuilder()
-                .UseStartup<OpenIdConnectAuthStartup>()
-                .UseConfiguration(configuration);
+        protected override IHost CreateTestServer() {
+            var hostBuilder = new HostBuilder()
+                .ConfigureWebHost(webHost =>
+                {
+                    webHost.UseStartup<OpenIdConnectAuthStartup>()
+                        .UseConfiguration(configuration)
+                        .UseTestServer();
+                });
 
-            return new TestServer(hostBuilder);
+            return hostBuilder.Start();
         }
 
         [Test]

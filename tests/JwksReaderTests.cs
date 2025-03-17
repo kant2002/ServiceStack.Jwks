@@ -1,9 +1,6 @@
-using System;
 using System.IO;
-using System.Net.Http.Headers;
-using System.Security.Cryptography;
 using Funq;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 using ServiceStack.Auth;
 
@@ -40,7 +37,7 @@ namespace ServiceStack.Jwks.Tests {
 
     [TestFixture]
     public class JwksReaderTests : JwksReaderBaseTests {
-        protected override TestServer CreateTestServer()=> WebHostUtils.CreateTestServer<AppHostJwksReader>(configuration);
+        protected override IHost CreateTestServer()=> WebHostUtils.CreateTestServer<AppHostJwksReader>(configuration);
 
         [Test]
         public override void No_token_returns_401()=> base.No_token_returns_401();

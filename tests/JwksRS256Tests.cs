@@ -1,7 +1,7 @@
 using System.IO;
 using System.Linq;
 using Funq;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 using ServiceStack.Auth;
 using ServiceStack.Text;
@@ -30,7 +30,7 @@ namespace ServiceStack.Jwks.Tests {
 
     [TestFixture]
     public class JwksProviderRS256 : BaseTests {
-        protected override TestServer CreateTestServer()=> WebHostUtils.CreateTestServer<AppHostRS256>();
+        protected override IHost CreateTestServer()=> WebHostUtils.CreateTestServer<AppHostRS256>();
 
         [Test]
         public void Jwks_returns_JsonWebKeySets() {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Funq;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 using ServiceStack.Auth;
 using ServiceStack.Text;
@@ -31,7 +31,7 @@ namespace ServiceStack.Jwks.Tests {
 
     [TestFixture]
     public class JwksRS512WithFallbackKeysTests : BaseTests {
-        protected override TestServer CreateTestServer()=> WebHostUtils.CreateTestServer<AppHostR512WithFallbackKeys>();
+        protected override IHost CreateTestServer()=> WebHostUtils.CreateTestServer<AppHostR512WithFallbackKeys>();
 
         [Test]
         public void Jwks_returns_JsonWebKeySets() {
