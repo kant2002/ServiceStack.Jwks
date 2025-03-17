@@ -1,11 +1,15 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35731.43
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Jwks", "src\ServiceStack.Jwks.csproj", "{55CD4674-02EC-472E-ABE0-BF7745CA697D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Jwks.Tests", "tests\ServiceStack.Jwks.Tests.csproj", "{F8819E8A-4BEB-41CA-888A-1E1D496BB875}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{55CD4674-02EC-472E-ABE0-BF7745CA697D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +45,8 @@ Global
 		{F8819E8A-4BEB-41CA-888A-1E1D496BB875}.Release|x64.Build.0 = Release|x64
 		{F8819E8A-4BEB-41CA-888A-1E1D496BB875}.Release|x86.ActiveCfg = Release|x86
 		{F8819E8A-4BEB-41CA-888A-1E1D496BB875}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

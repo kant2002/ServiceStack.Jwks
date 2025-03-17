@@ -1,7 +1,6 @@
 # ServiceStack.Jwks
 
-[![Build status](https://ci.appveyor.com/api/projects/status/4hfmc0b4fcq87b3y/branch/master?svg=true)](https://ci.appveyor.com/project/onlyann/servicestack-jwks/branch/master)
-[![Nuget](https://img.shields.io/nuget/v/ServiceStack.Jwks.svg)](https://www.nuget.org/packages/ServiceStack.Jwks/)
+[![Nuget](https://img.shields.io/nuget/v/ServiceStack.Jwks.Reborn.svg)](https://www.nuget.org/packages/ServiceStack.Jwks.Reborn/)
 
 A ServiceStack v5 plugin to expose and consume [Json Web Key](https://tools.ietf.org/html/rfc7517) sets using a subset of the [OpenID Connect discovery document](https://openid.net/specs/openid-connect-discovery-1_0.html).
 
@@ -12,9 +11,9 @@ Potential use cases:
 
 ## Getting Started
 
-Add the `ServiceStack.Jwks` Nuget package:
+Add the `ServiceStack.Jwks.Reborn` Nuget package:
 ```
-dotnet add package ServiceStack.Jwks --version 1.0.0
+dotnet add package ServiceStack.Jwks.Reborn --version 1.0.0
 ```
 
 ### Authentication service
