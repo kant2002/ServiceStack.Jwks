@@ -13,8 +13,10 @@
     <RepositoryUrl>https://github.com/kant2002/servicestack.jwks.git</RepositoryUrl>
     <PackageTags>ServiceStack;JWKS;JWT</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="8.6.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 </Project>
