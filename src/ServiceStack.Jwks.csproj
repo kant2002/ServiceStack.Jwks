@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.0.1</VersionPrefix>
   </PropertyGroup>
   <PropertyGroup>
     <Title>ServiceStack JSON Web Key Set plugin</Title>
@@ -14,9 +14,13 @@
     <PackageTags>ServiceStack;JWKS;JWT</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="8.6.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
